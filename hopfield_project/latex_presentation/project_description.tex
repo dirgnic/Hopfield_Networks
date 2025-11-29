@@ -1,0 +1,264 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+\title{Hopfield Networks: A Brain-Inspired Model for Associative Memory\\
+\large Mid-Term Project Description}
+\author{Ingrid Corobana\\Archaeology of Intelligent Machines}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This project explores Hopfield Networks through the lens of biological and physical analogies, presenting them as artificial "energy landscapes" where memories are stable valleys, mirroring protein folding dynamics and brain attractor states. We implement a Hopfield network from first principles, conduct experiments on capacity, noise robustness, and spurious attractors, and connect the classical model to modern extensions used in transformers.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+The human brain performs remarkable feats of memory: we can recall a complete song from just a few notes, recognize a face from a partial glimpse, and fill in missing details of past experiences. These capabilities emerge from billions of neurons connected by trillions of synapses, yet the underlying computational principles can be captured by surprisingly simple models.
+
+Hopfield Networks, introduced by John Hopfield in 1982 \cite{hopfield1982}, provide one such model. They demonstrate how a system of simple binary units, connected by symmetric weights and updated according to local rules, can exhibit emergent properties of associative memory. In 2024, Hopfield and collaborators were awarded the Nobel Prize in Physics for this work, recognizing its profound impact on both neuroscience and artificial intelligence.
+
+\subsection{Project Philosophy: Brain-Inspired Analogies}
+
+We will base the narrative of our project on biological and physical analogies, following recent popular explanations that use \textbf{protein folding} and \textbf{brain-inspired energy landscapes} as conceptual frameworks \cite{youtube_protein, youtube_hopfield}. 
+
+\textbf{Key Analogy:} Just as proteins explore a high-dimensional configuration space and "roll downhill" to settle into low-energy folded states, Hopfield networks navigate a state space where stored memories correspond to energy minima (attractor states). Network dynamics drive the system toward these attractors, enabling memory retrieval from partial or noisy inputs.
+
+In our implementation, each step (data representation, Hebbian learning, network dynamics, memory retrieval) will be presented both in mathematical/code form and using corresponding brain analogies (neurons, synapses, attractor states).
+
+\section{Background: What Has Been Done Before}
+
+\subsection{Hopfield Networks (1982)}
+
+Hopfield Networks are fully-connected recurrent neural networks where:
+\begin{itemize}
+    \item \textbf{Neurons}: Binary units $s_i \in \{-1, +1\}$ representing firing/silent states
+    \item \textbf{Synapses}: Symmetric weights $w_{ij} = w_{ji}$ learned via Hebbian rule
+    \item \textbf{Dynamics}: Asynchronous updates minimize an energy function
+    \item \textbf{Memory}: Stored patterns become stable fixed points (attractors)
+\end{itemize}
+
+The energy function is defined as:
+\begin{equation}
+E(\mathbf{s}) = -\frac{1}{2} \sum_{i,j} w_{ij} s_i s_j - \sum_i \theta_i s_i
+\end{equation}
+where $\theta_i$ are neuron thresholds (often set to zero).
+
+\textbf{Hebbian Learning Rule:}
+\begin{equation}
+w_{ij} = \frac{1}{N} \sum_{\mu=1}^{P} \xi_i^\mu \xi_j^\mu, \quad i \neq j, \quad w_{ii} = 0
+\end{equation}
+where $\boldsymbol{\xi}^\mu$ are the $P$ patterns to be stored, and $N$ is the number of neurons.
+
+\textbf{Capacity:} For random uncorrelated patterns, the network can reliably store approximately $0.138N$ patterns \cite{hopfield1982, wiki_hopfield}.
+
+\subsection{Modern Extensions}
+
+Recent work has generalized Hopfield networks to achieve exponential capacity:
+\begin{itemize}
+    \item \textbf{Dense Associative Memory} (Krotov \& Hopfield, 2016): Higher-order interactions
+    \item \textbf{Modern Hopfield Networks} (Ramsauer et al., 2020): Connection to attention mechanisms in transformers \cite{modern_hopfield}
+\end{itemize}
+
+These modern variants demonstrate that the core principles of energy-based associative memory remain relevant in contemporary deep learning architectures.
+
+\section{Approach}
+
+\subsection{Biological Inspiration: From Proteins to Neurons}
+
+\textbf{Act I — Energy Landscapes in Nature}
+
+We begin by drawing an analogy to protein folding:
+\begin{itemize}
+    \item A protein chain explores a vast configuration space
+    \item Energy landscapes guide the folding process
+    \item Low-energy valleys correspond to stable folded states
+    \item Nature solves optimization by "rolling downhill"
+\end{itemize}
+
+\textbf{Transition to Neural Systems:}
+\begin{itemize}
+    \item Replace protein configurations with neural firing patterns
+    \item Energy valleys become stored memories (attractors)
+    \item Brain dynamics = descent toward familiar states
+\end{itemize}
+
+\subsection{Implementation from First Principles}
+
+\textbf{Act II — Building a Hopfield Network}
+
+\subsubsection{Step 1: Neurons and Patterns}
+\textbf{Implementation:}
+\begin{itemize}
+    \item Represent neuron states as $s_i \in \{-1, +1\}$
+    \item Patterns are vectors $\boldsymbol{\xi} \in \{-1,+1\}^N$
+    \item Example: 10×10 binary images (flattened to $N=100$ neurons)
+\end{itemize}
+
+\textbf{Brain Analogy:}
+\begin{itemize}
+    \item Each element = a neuron (firing or silent)
+    \item A pattern = a global brain state snapshot
+\end{itemize}
+
+\subsubsection{Step 2: Hebbian Learning}
+\textbf{Implementation:}
+\begin{equation}
+w_{ij} = \frac{1}{N} \sum_{\mu=1}^{P} \xi_i^\mu \xi_j^\mu, \quad i \neq j
+\end{equation}
+
+\textbf{Brain Analogy:}
+\begin{itemize}
+    \item Hebb's principle: "Cells that fire together, wire together"
+    \item Synaptic plasticity strengthens co-active connections
+\end{itemize}
+
+\subsubsection{Step 3: Network Dynamics}
+\textbf{Update Rule:}
+\begin{equation}
+s_i^{(t+1)} = \text{sign}\left(\sum_j w_{ij} s_j^{(t)} - \theta_i\right)
+\end{equation}
+
+\textbf{Energy Minimization:}\\
+Asynchronous updates guarantee $\Delta E \leq 0$, so the system converges to a local minimum.
+
+\textbf{Brain Analogy:}
+\begin{itemize}
+    \item Each neuron "listens" to synaptic inputs
+    \item Positive input → fire; negative → stay silent
+    \item System collectively settles into consistent configuration
+\end{itemize}
+
+\subsubsection{Step 4: Memory Retrieval}
+\textbf{Implementation:}
+\begin{enumerate}
+    \item Add noise to a stored pattern (flip random bits)
+    \item Initialize network with noisy input
+    \item Run update rule until convergence
+    \item Check if final state matches original pattern
+\end{enumerate}
+
+\textbf{Brain Analogy:}
+\begin{itemize}
+    \item "Hear a few notes, recall the whole song"
+    \item Partial cue triggers complete memory
+    \item Network "fills in" missing information
+\end{itemize}
+
+\subsection{Experiments and Evaluation}
+
+\textbf{Act III — Testing the Model}
+
+\subsubsection{Data and Exploratory Analysis}
+\begin{itemize}
+    \item \textbf{Data}: Synthetic 10×10 binary letter images (A, B, C, D, E)
+    \item \textbf{EDA}: 
+    \begin{itemize}
+        \item Visualize stored patterns
+        \item Compute Hamming distances between patterns
+        \item Plot pattern similarity matrix (normalized overlap)
+        \item Interpretation: High similarity → overlapping energy valleys → reduced capacity
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Evaluation Metrics}
+\begin{enumerate}
+    \item \textbf{Retrieval Accuracy}: Fraction of noisy inputs correctly recovered
+    \item \textbf{Noise Robustness}: Accuracy vs. noise level (10\%, 20\%, 30\%, etc.)
+    \item \textbf{Capacity}: Number of patterns stored before performance collapse
+    \item \textbf{Convergence}: Number of iterations to reach stable state
+    \item \textbf{Energy Trajectory}: Visualization of energy minimization during retrieval
+\end{enumerate}
+
+\subsubsection{Capacity Experiment}
+\textbf{Procedure:}
+\begin{itemize}
+    \item Store $P = 1, 2, \ldots, 30$ random patterns
+    \item For each $P$, measure retrieval accuracy with 10\% noise
+    \item Plot accuracy vs. $P$
+    \item Compare to theoretical limit ($\sim 0.138N$)
+\end{itemize}
+
+\textbf{Brain Analogy:}\\
+When too many memories are crammed into one energy landscape, valleys merge and the network creates "false memories" (spurious attractors).
+
+\subsubsection{Spurious Attractors}
+\textbf{Procedure:}
+\begin{itemize}
+    \item Store patterns near/above capacity
+    \item Initialize with random states
+    \item Check if network converges to non-stored patterns
+    \item Visualize spurious attractors
+\end{itemize}
+
+\textbf{Brain Analogy:}\\
+Like confabulation in human memory — the brain creates stable but incorrect memories by blending real experiences.
+
+\subsection{Modern Connection: Transformers}
+
+Briefly mention that modern Hopfield networks generalize the classical model and are mathematically equivalent to attention mechanisms in transformers \cite{modern_hopfield}. This connects our project to cutting-edge AI research.
+
+\section{Expected Outcomes}
+
+\begin{enumerate}
+    \item \textbf{Working Implementation}: Python code for Hopfield network with comprehensive documentation and brain analogies at each step
+    \item \textbf{Experimental Results}: Plots demonstrating:
+    \begin{itemize}
+        \item Successful retrieval from noisy inputs
+        \item Noise robustness curve (accuracy vs. noise)
+        \item Capacity limit verification ($\sim 0.138N$)
+        \item Examples of spurious attractors
+    \end{itemize}
+    \item \textbf{Presentation}: Beamer slides structured as a three-act narrative (protein folding → implementation → experiments)
+    \item \textbf{Report}: LaTeX document explaining theory, implementation, results, and biological interpretations
+\end{enumerate}
+
+\section{Timeline}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Week} & \textbf{Task} \\
+\midrule
+1 & Literature review, setup environment \\
+2 & Implement core Hopfield network (Steps 1-4) \\
+3 & Conduct experiments (retrieval, capacity, noise) \\
+4 & Analyze results, create visualizations \\
+5 & Write report and prepare presentation \\
+6 & Final review and submission \\
+\bottomrule
+\end{tabular}
+\caption{Project timeline}
+\end{table}
+
+\section{References}
+
+\begin{thebibliography}{9}
+\bibitem{hopfield1982}
+Hopfield, J. J. (1982). Neural networks and physical systems with emergent collective computational abilities. \textit{Proceedings of the National Academy of Sciences}, 79(8), 2554-2558.
+
+\bibitem{modern_hopfield}
+Ramsauer, H., Schäfl, B., Lehner, J., Seidl, P., Widrich, M., Adler, T., ... \& Hochreiter, S. (2020). Hopfield networks is all you need. \textit{arXiv preprint arXiv:2008.02217}.
+
+\bibitem{youtube_protein}
+"A Brain-Inspired Algorithm For Memory" (YouTube): \url{https://www.youtube.com/watch?v=1WPJdAW-sFo}
+
+\bibitem{youtube_hopfield}
+"Hopfield Networks Explained" (YouTube): \url{https://www.youtube.com/watch?v=piF6D6CQxUw}
+
+\bibitem{wiki_hopfield}
+Wikipedia: Hopfield Network. \url{https://en.wikipedia.org/wiki/Hopfield_network}
+\end{thebibliography}
+
+\end{document}
