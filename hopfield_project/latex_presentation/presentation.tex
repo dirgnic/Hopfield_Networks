@@ -10,7 +10,7 @@
 
 \title{Hopfield Networks: When Neurons Remember}
 \subtitle{A Brain-Inspired Algorithm for Associative Memory}
-\author{Ingrid Corobana}
+\author{Ingrid Corobana, Moise Irina, Cosmin Glod}
 \institute{Archaeology of Intelligent Machines}
 \date{2025}
 
@@ -358,8 +358,9 @@ but your brain recalls the whole melody."}
 
 \begin{frame}{Experiment 1: Basic Retrieval}
 \begin{center}
-\textit{[Include figure: retrieval\_noise\_20.png]}\\
-\textit{Original → Noisy (20\% flipped) → Retrieved}
+\includegraphics[width=0.9\textwidth]{figures/retrieval_noise_20.png}\\
+\vspace{0.2cm}
+\small Original → Noisy (20\% flipped) → Retrieved
 \end{center}
 
 \vspace{0.3cm}
@@ -379,8 +380,9 @@ Like human memory, the network can reconstruct complete information from degrade
 
 \begin{frame}{Experiment 2: Noise Robustness Curve}
 \begin{center}
-\textit{[Include figure: noise\_robustness.png]}\\
-\textit{Accuracy vs Noise Level (0-50\%)}
+\includegraphics[width=0.85\textwidth]{figures/noise_robustness.png}\\
+\vspace{0.2cm}
+\small Accuracy vs Noise Level (0-50\%)
 \end{center}
 
 \vspace{0.3cm}
@@ -398,8 +400,9 @@ You can recognize a song from a few notes, but not from completely random sounds
 
 \begin{frame}{Experiment 3: Network Capacity}
 \begin{center}
-\textit{[Include figure: capacity\_experiment.png]}\\
-\textit{Accuracy vs Number of Stored Patterns}
+\includegraphics[width=0.85\textwidth]{figures/capacity_experiment.png}\\
+\vspace{0.2cm}
+\small Accuracy vs Number of Stored Patterns
 \end{center}
 
 \vspace{0.3cm}
@@ -436,9 +439,9 @@ When too many memories are stored, energy valleys overlap → network confuses s
 
 \column{0.5\textwidth}
 \begin{center}
-\textit{[Include figure: spurious\_attractors.png]}\\
+\includegraphics[width=0.9\textwidth]{figures/spurious_attractors.png}\\
 \vspace{0.2cm}
-\textit{Examples of spurious attractors}
+\small Examples of spurious attractors
 \end{center}
 
 \vspace{0.3cm}
@@ -450,8 +453,9 @@ The brain sometimes creates "memories" that never happened by blending real expe
 
 \begin{frame}{Pattern Similarity Analysis (EDA)}
 \begin{center}
-\textit{[Include figure: pattern\_similarity.png]}\\
-\textit{Heatmap of normalized overlaps between patterns}
+\includegraphics[width=0.75\textwidth]{figures/pattern_similarity.png}\\
+\vspace{0.2cm}
+\small Heatmap of normalized overlaps between patterns
 \end{center}
 
 \vspace{0.3cm}

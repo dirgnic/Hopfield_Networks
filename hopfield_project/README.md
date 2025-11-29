@@ -78,5 +78,8 @@ retrieved = hopfield.retrieve(noisy, max_iter=20)
 4. **Modern Extensions**: [Hopfield Networks is All You Need](https://www.youtube.com/watch?v=nv6oFDp6rNQ)
 
 ### Authors
-Ingrid Corobana
+- Ingrid Corobana
+- Moise Irina
+- Cosmin Glod
+
 Archaeology of Intelligent Machines - 2025

@@ -233,7 +233,12 @@ class HopfieldNetwork:
         for iteration in range(max_iter):
             # Update neurons
             if mode == 'async':
-                new_state = self.update_async(state)
+                # Update all neurons sequentially in random order
+                new_state = state.copy()
+                indices = np.random.permutation(self.n_neurons)
+                for i in indices:
+                    h_i = np.dot(self.weights[i], new_state)
+                    new_state[i] = 1 if h_i > 0 else -1 if h_i < 0 else new_state[i]
             else:
                 new_state = self.update_sync(state)
             

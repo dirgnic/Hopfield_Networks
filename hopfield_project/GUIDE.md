@@ -275,7 +275,7 @@ If you use this code for your project, cite:
 
 ```bibtex
 @misc{hopfield_ami_2025,
-  author = {Corobana, Ingrid},
+  author = {Corobana, Ingrid and Irina, Moise and Glod, Cosmin},
   title = {Hopfield Networks: A Brain-Inspired Model for Associative Memory},
   year = {2025},
   note = {Archaeology of Intelligent Machines, Final Project}
