@@ -306,10 +306,10 @@ If you use this code for your project, cite:
 ## Questions?
 
 This project demonstrates:
-✓ Classical Hopfield networks from scratch  
-✓ Brain-inspired analogies throughout  
-✓ Comprehensive experiments with visualizations  
-✓ Connection to modern AI (transformers)  
-✓ Complete LaTeX presentation and report  
+ Classical Hopfield networks from scratch  
+ Brain-inspired analogies throughout  
+ Comprehensive experiments with visualizations  
+ Connection to modern AI (transformers)  
+ Complete LaTeX presentation and report  
 
-Enjoy exploring how simple rules create complex memory systems! 🧠✨
+Enjoy exploring how simple rules create complex memory systems! 

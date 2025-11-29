@@ -11,7 +11,7 @@ echo ""
 
 # Check if in correct directory
 if [ ! -f "requirements.txt" ]; then
-    echo "❌ Error: Please run this script from the hopfield_project directory"
+    echo " Error: Please run this script from the hopfield_project directory"
     exit 1
 fi
 
@@ -19,9 +19,9 @@ fi
 echo "Step 1: Creating virtual environment..."
 python3 -m venv venv
 if [ $? -eq 0 ]; then
-    echo "✓ Virtual environment created"
+    echo " Virtual environment created"
 else
-    echo "❌ Failed to create virtual environment"
+    echo " Failed to create virtual environment"
     exit 1
 fi
 echo ""
@@ -32,9 +32,9 @@ source venv/bin/activate
 pip install --upgrade pip > /dev/null 2>&1
 pip install -r requirements.txt
 if [ $? -eq 0 ]; then
-    echo "✓ Dependencies installed"
+    echo " Dependencies installed"
 else
-    echo "❌ Failed to install dependencies"
+    echo " Failed to install dependencies"
     exit 1
 fi
 echo ""
@@ -43,7 +43,7 @@ echo ""
 echo "Step 3: Creating output directories..."
 mkdir -p figures
 mkdir -p notebooks
-echo "✓ Directories created"
+echo " Directories created"
 echo ""
 
 # Step 4: Run demo
@@ -55,7 +55,7 @@ echo ""
 
 # Final message
 echo "=========================================="
-echo "  Setup Complete! 🎉"
+echo "  Setup Complete! "
 echo "=========================================="
 echo ""
 echo "Next steps:"

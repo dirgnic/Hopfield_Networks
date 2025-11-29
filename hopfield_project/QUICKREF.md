@@ -1,14 +1,14 @@
 # Quick Reference Card
 ## Hopfield Networks Project
 
-### 🚀 Quick Start
+###  Quick Start
 ```bash
 cd hopfield_project
 chmod +x setup.sh
 ./setup.sh
 ```
 
-### 📁 File Structure
+###  File Structure
 ```
 hopfield_project/
 ├── src/               # Core implementation
@@ -21,7 +21,7 @@ hopfield_project/
 └── notebooks/        # Jupyter notebook
 ```
 
-### 🧪 Run Experiments
+###  Run Experiments
 ```bash
 # Quick demo
 python demo.py
@@ -34,13 +34,13 @@ python noise_robustness.py     # Noise tolerance
 python spurious_attractors.py  # False memories
 ```
 
-### 📊 Key Results
+###  Key Results
 - **Capacity**: ~14 patterns (0.138 × 100 neurons)
 - **Noise tolerance**: Up to 25-30% corruption
 - **Convergence**: 5-15 iterations typical
 - **Spurious attractors**: Emerge above capacity
 
-### 🧠 Brain Analogies Cheat Sheet
+###  Brain Analogies Cheat Sheet
 | Component | Math | Brain Analogy |
 |-----------|------|---------------|
 | Neuron state | s_i ∈ {-1,+1} | Firing (+1) or silent (-1) |
@@ -51,7 +51,7 @@ python spurious_attractors.py  # False memories
 | Update | s_i = sign(Σw_ij·s_j) | Neuron listens to inputs |
 | Retrieval | Noisy → Original | "Hear notes → recall song" |
 
-### 📝 LaTeX Commands
+###  LaTeX Commands
 ```bash
 cd latex_presentation
 
@@ -64,7 +64,7 @@ pdflatex presentation.tex
 pdflatex presentation.tex
 ```
 
-### 🎯 Three-Act Structure
+###  Three-Act Structure
 **Act I**: Protein folding → Energy landscapes → Brain dynamics
 
 **Act II**: Implementation with analogies
@@ -75,7 +75,7 @@ pdflatex presentation.tex
 
 **Act III**: Experiments → Capacity → Spurious attractors → Transformers
 
-### 💡 Key Equations
+###  Key Equations
 **Hebbian learning:**
 ```
 w_ij = (1/N) Σ_μ ξ_i^μ · ξ_j^μ  (i≠j)
@@ -91,7 +91,7 @@ s_i^(t+1) = sign(Σ_j w_ij · s_j^(t))
 E(s) = -½ Σ_ij w_ij · s_i · s_j
 ```
 
-### 🔧 Troubleshooting
+###  Troubleshooting
 ```bash
 # Can't run experiments?
 cd experiments
@@ -104,12 +104,12 @@ export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 export MPLBACKEND=TkAgg
 ```
 
-### 📚 References
+###  References
 1. Hopfield (1982) - PNAS original paper
 2. YouTube: "A Brain-Inspired Algorithm For Memory"
 3. Ramsauer et al. (2020) - "Hopfield Networks is All You Need"
 
-### ✅ Checklist for Presentation
+###  Checklist for Presentation
 - [ ] Run all experiments
 - [ ] Generate all figures
 - [ ] Copy figures to latex_presentation/
@@ -120,5 +120,5 @@ export MPLBACKEND=TkAgg
 - [ ] Test demo on presentation machine
 
 ---
-**2024 Nobel Prize in Physics** 🏆
+**2024 Nobel Prize in Physics** 
 John Hopfield & Geoffrey Hinton

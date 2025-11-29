@@ -18,13 +18,13 @@
 
     hopfield_project/
     │
-    ├─── 📖 Documentation
+    ├───  Documentation
     │    ├── README.md              # Project overview
     │    ├── GUIDE.md               # Detailed instructions
     │    ├── QUICKREF.md            # Quick reference
     │    └── PROJECT_SUMMARY.md     # Complete summary
     │
-    ├─── 🧠 Core Implementation (src/)
+    ├───  Core Implementation (src/)
     │    ├── hopfield.py            # Main network class (400+ lines)
     │    │   ├── HopfieldNetwork    # Core class
     │    │   ├── train()            # Hebbian learning
@@ -41,7 +41,7 @@
     │        ├── plot_energy()      # Energy trajectories
     │        └── plot_capacity()    # Capacity curves
     │
-    ├─── 🔬 Experiments (experiments/)
+    ├───  Experiments (experiments/)
     │    ├── basic_retrieval.py     # Test memory recall
     │    │   └── → figures/retrieval_noise_*.png
     │    │
@@ -54,11 +54,11 @@
     │    └── spurious_attractors.py # False memories
     │        └── → figures/spurious_attractors.png
     │
-    ├─── 📊 Presentation (latex_presentation/)
+    ├───  Presentation (latex_presentation/)
     │    ├── presentation.tex       # Beamer slides (complete)
     │    └── project_description.tex # Mid-term report
     │
-    └─── 💻 Interactive (notebooks/)
+    └───  Interactive (notebooks/)
          └── exploration.ipynb      # Jupyter notebook
 
 
@@ -104,7 +104,7 @@
                 └→ project_description.pdf (Report)
                 ↓
     
-    Step 5: Present! 🎤
+    Step 5: Present! 
     ┌─────────────────────────┐
     │  Three-Act Structure    │  Use brain analogies throughout,
     │  + Brain analogies      │  show live demos, explain results
@@ -118,13 +118,13 @@
 
     ACT I: From Proteins to Energy Landscapes (5 min)
     ┌──────────────────────────────────────────────────────────────┐
-    │  🧬 Protein Folding                                          │
+    │   Protein Folding                                          │
     │     ↓                                                         │
-    │  🏔️  Energy Landscapes (rolling downhill)                    │
+    │  ️  Energy Landscapes (rolling downhill)                    │
     │     ↓                                                         │
-    │  🧠 Brain Dynamics (memories as valleys)                     │
+    │   Brain Dynamics (memories as valleys)                     │
     │     ↓                                                         │
-    │  🤖 Hopfield Networks                                        │
+    │   Hopfield Networks                                        │
     └──────────────────────────────────────────────────────────────┘
 
     ACT II: Building from Simple Rules (10 min)
@@ -137,10 +137,10 @@
 
     ACT III: Experiments & Modern Connections (10 min)
     ┌──────────────────────────────────────────────────────────────┐
-    │  📊 Capacity: ~0.138N verified                               │
-    │  📊 Noise tolerance: 25-30%                                  │
-    │  📊 Spurious attractors: False memories                      │
-    │  🚀 Modern link: Transformers                                │
+    │   Capacity: ~0.138N verified                               │
+    │   Noise tolerance: 25-30%                                  │
+    │   Spurious attractors: False memories                      │
+    │   Modern link: Transformers                                │
     └──────────────────────────────────────────────────────────────┘
 
 
@@ -180,17 +180,17 @@
     Capacity Limits
     ───────────────
     Patterns       Accuracy    Status
-    5              100%        ✓ Well below capacity
-    10             95-100%     ✓ Below capacity
+    5              100%         Well below capacity
+    10             95-100%      Below capacity
     14             85-95%      ~ At theoretical limit (0.138N)
-    20             60-70%      ✗ Above capacity
-    30             <50%        ✗ Complete breakdown
+    20             60-70%       Above capacity
+    30             <50%         Complete breakdown
 
     Energy Behavior
     ───────────────
-    ✓ Always decreases during retrieval
-    ✓ Converges to local minimum
-    ✓ Lower energy = more stable state
+     Always decreases during retrieval
+     Converges to local minimum
+     Lower energy = more stable state
 
 
 ┌────────────────────────────────────────────────────────────────────────────┐
@@ -220,7 +220,7 @@
 
 
 ┌────────────────────────────────────────────────────────────────────────────┐
-│ 🏆 2024 NOBEL PRIZE IN PHYSICS                                            │
+│  2024 NOBEL PRIZE IN PHYSICS                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 
     John Hopfield & Geoffrey Hinton
@@ -229,42 +229,42 @@
 
 
 ┌────────────────────────────────────────────────────────────────────────────┐
-│ PROJECT STATUS: ✅ COMPLETE & READY                                        │
+│ PROJECT STATUS:  COMPLETE & READY                                        │
 └────────────────────────────────────────────────────────────────────────────┘
 
-    ✅ Implementation: Complete (400+ lines, fully documented)
-    ✅ Experiments: All 4 experiments ready to run
-    ✅ Visualization: Comprehensive plotting tools
-    ✅ Documentation: README, GUIDE, QUICKREF, SUMMARY
-    ✅ Presentation: Beamer slides (complete with narrative)
-    ✅ Report: Mid-term project description (LaTeX)
-    ✅ Interactive: Jupyter notebook for exploration
-    ✅ Setup: One-command installation script
+     Implementation: Complete (400+ lines, fully documented)
+     Experiments: All 4 experiments ready to run
+     Visualization: Comprehensive plotting tools
+     Documentation: README, GUIDE, QUICKREF, SUMMARY
+     Presentation: Beamer slides (complete with narrative)
+     Report: Mid-term project description (LaTeX)
+     Interactive: Jupyter notebook for exploration
+     Setup: One-command installation script
 
 
 ┌────────────────────────────────────────────────────────────────────────────┐
 │ WHAT MAKES THIS PROJECT SPECIAL?                                          │
 └────────────────────────────────────────────────────────────────────────────┘
 
-    1. 🧠 Brain analogies as the narrative spine
+    1.  Brain analogies as the narrative spine
        Every concept explained with biological parallel
 
-    2. 📖 Three-act storytelling structure
+    2.  Three-act storytelling structure
        Protein folding → Implementation → Experiments
 
-    3. 🔬 Complete experimental validation
+    3.  Complete experimental validation
        Verify all theoretical predictions with code
 
-    4. 🎨 Professional visualizations
+    4.  Professional visualizations
        Publication-quality figures for every concept
 
-    5. 🚀 Modern connections
+    5.  Modern connections
        Links to transformers and cutting-edge AI
 
-    6. 📚 Comprehensive documentation
+    6.  Comprehensive documentation
        From quick-start to deep technical details
 
-    7. 🏆 Nobel Prize context
+    7.  Nobel Prize context
        2024 Physics prize for these very ideas!
 
 
@@ -283,7 +283,7 @@
     Questions?
         Check documentation, inline comments, or troubleshooting guide
 
-    Have fun exploring how simple rules create complex memory! 🧠✨
+    Have fun exploring how simple rules create complex memory! 
 
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║  "The simplest model that captures the essence of how memories might be   ║
