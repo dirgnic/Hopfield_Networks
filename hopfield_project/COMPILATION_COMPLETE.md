@@ -1,7 +1,7 @@
 # Hopfield Networks Project - COMPILATION COMPLETE
 
 **Date**: November 29, 2024  
-**Authors**: Ingrid Corobana, Moise Irina, Cosmin Glod  
+**Authors**: Ingrid Corobana, Cosmin Glod, Irina Moise  
 **Status**: **READY FOR SUBMISSION**
 
 ---

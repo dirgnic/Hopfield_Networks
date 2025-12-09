@@ -79,7 +79,7 @@ retrieved = hopfield.retrieve(noisy, max_iter=20)
 
 ### Authors
 - Ingrid Corobana
-- Moise Irina
 - Cosmin Glod
+- Irina Moise
 
 Archaeology of Intelligent Machines - 2025

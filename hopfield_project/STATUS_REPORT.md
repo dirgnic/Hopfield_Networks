@@ -1,7 +1,7 @@
 # Hopfield Networks Project - Status Report
 
 **Date**: November 29, 2025  
-**Authors**: Ingrid Corobana, Moise Irina, Cosmin Glod  
+**Authors**: Ingrid Corobana, Cosmin Glod, Irina Moise  
 **Status**: COMPLETE AND READY FOR SUBMISSION
 
 ---

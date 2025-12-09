@@ -239,7 +239,7 @@ After understanding this single-pattern experiment:
 
 ## Authors
 
-Ingrid Corobana, Moise Irina, Cosmin Glod
+Ingrid Corobana, Cosmin Glod, Irina Moise
 
 **Date**: December 9, 2025
 

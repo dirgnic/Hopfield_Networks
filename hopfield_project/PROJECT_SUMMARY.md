@@ -454,4 +454,4 @@ You have everything you need:
 ---
 
 *Created for Archaeology of Intelligent Machines, 2025*
-*Authors: Ingrid Corobana, Moise Irina, Cosmin Glod*
+*Authors: Ingrid Corobana, Cosmin Glod, Irina Moise*

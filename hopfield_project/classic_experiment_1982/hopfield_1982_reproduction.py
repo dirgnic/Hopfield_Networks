@@ -518,7 +518,7 @@ def main():
     print("'Neural networks and physical systems with emergent")
     print("collective computational abilities'")
     print("Proceedings of the National Academy of Sciences")
-    print("\nAuthors: Ingrid Corobana, Moise Irina, Cosmin Glod")
+    print("\nAuthors: Ingrid Corobana, Cosmin Glod, Irina Moise")
     print("Date: December 9, 2025")
     
     # Run experiments

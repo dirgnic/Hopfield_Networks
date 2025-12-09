@@ -4,7 +4,7 @@
 
 **Date**: November 29, 2025  
 **Project**: Hopfield Networks - A Brain-Inspired Model for Associative Memory  
-**Authors**: Ingrid Corobana, Moise Irina, Cosmin Glod
+**Authors**: Ingrid Corobana, Cosmin Glod, Irina Moise
 
 ---
 

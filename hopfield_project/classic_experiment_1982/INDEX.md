@@ -248,6 +248,6 @@ Proceedings of the National Academy of Sciences, 79(8), 2554-2558.
 
 ---
 
-**Authors**: Ingrid Corobana, Moise Irina, Cosmin Glod  
+**Authors**: Ingrid Corobana, Cosmin Glod, Irina Moise  
 **Date**: December 9, 2025  
 **Project**: Hopfield Networks - Archaeology of Intelligent Machines

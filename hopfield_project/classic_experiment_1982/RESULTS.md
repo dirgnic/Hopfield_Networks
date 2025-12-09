@@ -1,7 +1,7 @@
 # Experimental Results: Hopfield 1982 Reproduction
 
 **Date**: December 9, 2025  
-**Authors**: Ingrid Corobana, Moise Irina, Cosmin Glod
+**Authors**: Ingrid Corobana, Cosmin Glod, Irina Moise
 
 ## Summary
 
@@ -272,8 +272,8 @@ s_i^(t+1) = sign(Σ_j w_ij × s_j^(t))
 
 This reproduction was created on December 9, 2025 by:
 - Ingrid Corobana
-- Moise Irina  
 - Cosmin Glod
+- Irina Moise
 
 The code is available in: `classic_experiment_1982/hopfield_1982_reproduction.py`
 
