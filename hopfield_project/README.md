@@ -286,6 +286,11 @@ jupyter notebook notebooks/image_retrieval_3.ipynb
 
 4. Amit, D.J. (1989). "Modeling Brain Function: The World of Attractor Neural Networks". Cambridge University Press.
 
+5. Youtube: https://www.youtube.com/watch?v=1WPJdAW-sFo
+
+6. Youtube: https://www.youtube.com/watch?v=piF6D6CQxUw
+
+
 ---
 
 *Archaeology of Intelligent Machines - University of Bucharest, 2025*
