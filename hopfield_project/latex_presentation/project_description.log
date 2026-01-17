@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.1)  17 JAN 2026 21:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.1)  17 JAN 2026 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -531,7 +531,7 @@ Package rerunfilecheck Info: File `project_description.out' has not changed.
 Here is how much of TeX's memory you used:
  11915 strings out of 473190
  187259 string characters out of 5715800
- 588528 words of memory out of 5000000
+ 588536 words of memory out of 5000000
  34945 multiletter control sequences out of 15000+600000
  585534 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -549,7 +549,7 @@ al/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local
 /2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025/texmf-dist/fon
 ts/type1/urw/times/utmri8a.pfb>
-Output written on project_description.pdf (8 pages, 166093 bytes).
+Output written on project_description.pdf (8 pages, 166098 bytes).
 PDF statistics:
  278 PDF objects out of 1000 (max. 8388607)
  239 compressed objects within 3 object streams
