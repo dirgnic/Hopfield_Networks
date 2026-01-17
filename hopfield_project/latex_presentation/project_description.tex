@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -6,11 +6,23 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{subcaption}
+\usepackage{times}
 
-\title{Hopfield Networks: A Brain-Inspired Model for Associative Memory\\
-\large Mid-Term Project Description}
-\author{Ingrid Corobana, Cosmin Glod, Irina Moise\\Archaeology of Intelligent Machines}
-\date{2025}
+\title{Hopfield Networks: A Brain-Inspired Model for Associative Memory}
+\author{
+\textbf{Ingrid Corobana} \\
+\texttt{ingrid.corobana@s.unibuc.ro} \\
+\small Implementation, experiments
+\and
+\textbf{Cosmin Glod} \\
+\texttt{cosmin.glod@s.unibuc.ro} \\
+\small Mathematical analysis, presentation
+\and
+\textbf{Irina Moise} \\
+\texttt{irina.moise@s.unibuc.ro} \\
+\small Literature review, visualization
+}
+\date{Archaeology of Intelligent Machines --- January 2026}
 
 \begin{document}
 
@@ -35,6 +47,20 @@ We will base the narrative of our project on biological and physical analogies, 
 \textbf{Key Analogy:} Just as proteins explore a high-dimensional configuration space and "roll downhill" to settle into low-energy folded states, Hopfield networks navigate a state space where stored memories correspond to energy minima (attractor states). Network dynamics drive the system toward these attractors, enabling memory retrieval from partial or noisy inputs.
 
 In our implementation, each step (data representation, Hebbian learning, network dynamics, memory retrieval) will be presented both in mathematical/code form and using corresponding brain analogies (neurons, synapses, attractor states).
+
+\subsection{Contributions Per Member}
+\begin{itemize}
+    \item \textbf{Ingrid Corobana:} Led implementation of the core \texttt{HopfieldNetwork} class in Python, designed and executed capacity/noise experiments, created the image retrieval notebook with Simpsons character faces, wrote project documentation and README files.
+    \item \textbf{Cosmin Glod:} Derived mathematical foundations (energy function proofs, Hebbian rule derivation, pseudo-inverse learning rule), created the modern theory notebook connecting classical Hopfield to transformer attention, prepared the Beamer presentation slides.
+    \item \textbf{Irina Moise:} Conducted literature review on Hopfield's original 1982 paper and modern extensions (Ramsauer et al. 2020), created visualizations (energy landscapes, pattern similarity matrices, 3D energy surfaces), documented biological analogies throughout.
+\end{itemize}
+
+\subsection{What Each Member Learned}
+\textbf{Ingrid:} ``I learned how simple local update rules can produce emergent global behavior. Implementing the network from scratch gave me deep appreciation for how biological constraints (symmetric weights, no self-connections) lead to useful computational properties. In the future, I want to explore continuous Hopfield networks and their connection to modern attention mechanisms.''
+
+\textbf{Cosmin:} ``Deriving the pseudo-inverse rule helped me understand why orthogonalization matters for memory capacity. The connection to transformers was surprising---attention is just modern Hopfield retrieval! I want to learn more about energy-based models and contrastive learning.''
+
+\textbf{Irina:} ``Reading Hopfield's original paper showed me how physics concepts (energy, thermodynamics, spin glasses) apply to neural computation. The protein folding analogy made the mathematics intuitive. I want to explore Boltzmann machines and restricted Boltzmann machines next.''
 
 \section{Background: What Has Been Done Before}
 
@@ -73,6 +99,19 @@ Recent work has generalized Hopfield networks to achieve exponential capacity:
 These modern variants demonstrate that the core principles of energy-based associative memory remain relevant in contemporary deep learning architectures.
 
 \section{Approach}
+
+\subsection{Repository and Tools}
+\begin{itemize}
+    \item \textbf{GitHub Repository:} \url{https://github.com/dirgnic/Hopfield_Networks}
+    \item \textbf{Google Colab Notebooks:}
+    \begin{itemize}
+        \item Project Description: \url{https://colab.research.google.com/drive/1ijqbNkXiPpae_7u4anCMlk6SQ_0sjzTM}
+        \item Main Implementation: \url{https://colab.research.google.com/drive/18eRvSoLZ_0654VFzdFsTjFCBSbpGeku7}
+    \end{itemize}
+    \item \textbf{Software Tools:} Python 3.9+, NumPy, Matplotlib, scikit-learn (for PCA visualization), PIL (for image processing)
+    \item \textbf{Hardware:} Standard laptop CPU (no GPU required)
+    \item \textbf{Processing Time:} All experiments complete in under 1 minute on a standard laptop
+\end{itemize}
 
 \subsection{Biological Inspiration: From Proteins to Neurons}
 
@@ -208,39 +247,68 @@ Like confabulation in human memory — the brain creates stable but incorrect me
 
 Briefly mention that modern Hopfield networks generalize the classical model and are mathematically equivalent to attention mechanisms in transformers \cite{modern_hopfield}. This connects our project to cutting-edge AI research.
 
-\section{Expected Outcomes}
+\section{Limitations}
 
 \begin{enumerate}
-    \item \textbf{Working Implementation}: Python code for Hopfield network with comprehensive documentation and brain analogies at each step
-    \item \textbf{Experimental Results}: Plots demonstrating:
-    \begin{itemize}
-        \item Successful retrieval from noisy inputs
-        \item Noise robustness curve (accuracy vs. noise)
-        \item Capacity limit verification ($\sim 0.138N$)
-        \item Examples of spurious attractors
-    \end{itemize}
-    \item \textbf{Presentation}: Beamer slides structured as a three-act narrative (protein folding → implementation → experiments)
-    \item \textbf{Report}: LaTeX document explaining theory, implementation, results, and biological interpretations
+    \item \textbf{Limited Storage Capacity:} The classical Hopfield network can only store approximately $0.138N$ patterns reliably. For our 100-neuron network ($N=100$), this means only $\sim$14 memories---far too few for practical applications like image databases.
+    
+    \item \textbf{Binary Patterns Only:} Our implementation uses binary states $\{-1, +1\}$, which cannot directly represent continuous or grayscale data. Real images must be binarized, losing significant information. Modern continuous Hopfield networks address this but were not implemented.
+    
+    \item \textbf{Spurious Attractors:} The network creates ``false memories''---stable states that don't correspond to any stored pattern. These include mixture states (blends of stored patterns) and spin-glass states. We observed these experimentally but did not implement methods to suppress them.
+    
+    \item \textbf{No Temporal Sequences:} Classical Hopfield networks store static patterns only. They cannot learn or reproduce temporal sequences like melodies, motor actions, or video frames. Extensions like asymmetric Hopfield networks exist but were beyond our scope.
+    
+    \item \textbf{Scalability Issues:} The weight matrix grows as $O(N^2)$, making large networks memory-intensive. We tested up to $N=1000$ neurons but did not explore sparse connectivity or hierarchical architectures that might improve scaling.
+    
+    \item \textbf{Correlated Pattern Interference:} Highly similar patterns (e.g., letters ``O'' and ``Q'') interfere with each other, reducing effective capacity below the theoretical limit. While the pseudo-inverse rule helps, it requires $O(N^3)$ matrix inversion.
+    
+    \item \textbf{Synthetic Data Only:} Our experiments use synthetic letter patterns and preprocessed cartoon faces (Simpsons). We did not evaluate performance on natural images, handwritten digits (MNIST), or noisy real-world sensor data.
+    
+    \item \textbf{Incomplete Modern Theory Coverage:} While we discuss the connection to transformers, we did not implement the continuous modern Hopfield network from Ramsauer et al. (2020) that achieves exponential capacity.
 \end{enumerate}
 
-\section{Timeline}
+\section{Conclusions and Future Work}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{ll}
-\toprule
-\textbf{Week} & \textbf{Task} \\
-\midrule
-1 & Literature review, setup environment \\
-2 & Implement core Hopfield network (Steps 1-4) \\
-3 & Conduct experiments (retrieval, capacity, noise) \\
-4 & Analyze results, create visualizations \\
-5 & Write report and prepare presentation \\
-6 & Final review and submission \\
-\bottomrule
-\end{tabular}
-\caption{Project timeline}
-\end{table}
+\subsection{Reflections}
+
+\textbf{What could we have done differently?}
+\begin{itemize}
+    \item We could have implemented the modern continuous Hopfield network with exponential capacity, which would have made the transformer connection more concrete
+    \item More systematic comparison between Hebbian and pseudo-inverse learning rules across different pattern correlation levels
+    \item GPU implementation using PyTorch for larger-scale experiments
+    \item Interactive web demo using JavaScript/WebGL for real-time visualization
+\end{itemize}
+
+\textbf{How could this project be improved?}
+\begin{itemize}
+    \item Implement attention-based modern Hopfield retrieval from Ramsauer et al. (2020)
+    \item Add stochastic updates (Boltzmann machine) to escape local minima
+    \item Test on real image datasets (MNIST, CIFAR-10) with proper preprocessing
+    \item Explore sparse connectivity patterns inspired by biological neural networks
+    \item Add temporal sequence learning with asymmetric weights
+\end{itemize}
+
+\textbf{Did we enjoy this project?}
+
+Yes! The elegant connection between physics, neuroscience, and computer science made this fascinating. Seeing the network ``recall'' a complete pattern from a corrupted input feels almost magical, yet it emerges from simple mathematical rules. The 2024 Nobel Prize recognition made us appreciate how foundational these ideas are to modern AI.
+
+\textbf{What did we learn?}
+\begin{itemize}
+    \item Energy-based models provide powerful frameworks for understanding neural computation
+    \item Simple local update rules can produce complex emergent behavior (content-addressable memory)
+    \item Historical ideas from 1982 remain directly relevant to cutting-edge AI (transformers use Hopfield-like retrieval)
+    \item The importance of combining mathematical analysis with empirical experiments
+    \item How to structure a research project: literature review → implementation → experiments → analysis
+\end{itemize}
+
+\subsection{Suggestions for Future AMI Projects}
+\begin{itemize}
+    \item Provide a curated list of computational resources (Colab Pro, cloud GPU credits) for students wanting to scale up
+    \item Include intermediate checkpoints/milestones to encourage incremental progress
+    \item Brief LaTeX tutorial session for students unfamiliar with academic typesetting
+    \item More class time for project discussions and peer feedback
+    \item A shared repository of baseline implementations students can build upon
+\end{itemize}
 
 \section{References}
 
