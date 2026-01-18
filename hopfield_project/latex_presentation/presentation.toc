@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{Act I: From Proteins to Energy Landscapes}{3}{0}{1}
-\beamer@sectionintoc {2}{Act II: Building Intelligence from Simple Rules}{6}{0}{2}
-\beamer@sectionintoc {3}{Act III: Experiments, Capacity \& Modern Extensions}{10}{0}{3}
