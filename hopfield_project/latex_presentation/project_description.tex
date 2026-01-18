@@ -90,13 +90,14 @@ where $\boldsymbol{\xi}^\mu$ are the $P$ patterns to be stored, and $N$ is the n
 
 \subsection{Modern Extensions}
 
-Recent work has generalized Hopfield networks to achieve exponential capacity:
+Recent work has generalized Hopfield networks to achieve much higher capacity than the classical $0.138N$ limit:
 \begin{itemize}
-    \item \textbf{Dense Associative Memory} (Krotov \& Hopfield, 2016): Higher-order interactions
-    \item \textbf{Modern Hopfield Networks} (Ramsauer et al., 2020): Connection to attention mechanisms in transformers \cite{modern_hopfield}
+    \item \textbf{Dense Associative Memory} (Krotov \& Hopfield, 2016): Higher-order interactions that sharpen energy minima.
+    \item \textbf{Modern Hopfield Networks} (Ramsauer et al., 2020): Show that Hopfield-style retrieval is mathematically equivalent to attention mechanisms in transformers \cite{modern_hopfield}.
+    \item \textbf{Huge-Capacity Associative Memory} (Demircigil et al., 2017): Introduces an energy-based model with exponentially many stable memories \cite{demircigil2017}.
 \end{itemize}
 
-These modern variants demonstrate that the core principles of energy-based associative memory remain relevant in contemporary deep learning architectures.
+In this project we implement and experiment with the \emph{classical} Hebbian Hopfield network and a pseudo-inverse variant. We discuss these modern extensions qualitatively in the notebooks but do not reproduce their full theoretical models.
 
 \section{Approach}
 
@@ -196,56 +197,39 @@ Asynchronous updates guarantee $\Delta E \leq 0$, so the system converges to a l
 
 \subsection{Experiments and Evaluation}
 
-\textbf{Act III — Testing the Model}
+	extbf{Act III — Testing the Model}
 
-\subsubsection{Data and Exploratory Analysis}
+Our experiments are implemented in two main Jupyter notebooks: one focused on classical Hopfield behavior and image retrieval, and one on the modern Hopfield/attention connection.
+
+\subsubsection{Part 1: Clean Geometric and Letter Patterns}
 \begin{itemize}
-    \item \textbf{Data}: Synthetic 10×10 binary letter images (A, B, C, D, E)
-    \item \textbf{EDA}: 
-    \begin{itemize}
-        \item Visualize stored patterns
-        \item Compute Hamming distances between patterns
-        \item Plot pattern similarity matrix (normalized overlap)
-        \item Interpretation: High similarity → overlapping energy valleys → reduced capacity
-    \end{itemize}
+    \item \textbf{Data}: Synthetic 10×10 binary patterns ($N=100$) including block letters (A--E) and simple geometric shapes.
+    \item \textbf{Exploratory Analysis}: We visualize all stored patterns, compute Hamming distances, and plot a pattern similarity (overlap) matrix to see how correlated patterns deform the energy landscape.
+    \item \textbf{Noise-Robustness Experiment}: For each stored pattern and for noise levels
+    $$\text{noise} \in \{0.05, 0.10, 0.15, 0.20, 0.25, 0.30\},$$
+    we run 30 trials where random bits are flipped, retrieve with asynchronous updates, and measure retrieval accuracy (fraction of trials that return the original pattern).
+    \item \textbf{Result}: The classical Hopfield network maintains $>90\%$ accuracy up to roughly $20\%-25\%$ noise and then collapses rapidly, matching the intuitive picture of basins of attraction with finite radius.
 \end{itemize}
 
-\subsubsection{Evaluation Metrics}
-\begin{enumerate}
-    \item \textbf{Retrieval Accuracy}: Fraction of noisy inputs correctly recovered
-    \item \textbf{Noise Robustness}: Accuracy vs. noise level (10\%, 20\%, 30\%, etc.)
-    \item \textbf{Capacity}: Number of patterns stored before performance collapse
-    \item \textbf{Convergence}: Number of iterations to reach stable state
-    \item \textbf{Energy Trajectory}: Visualization of energy minimization during retrieval
-\end{enumerate}
-
-\subsubsection{Capacity Experiment}
-\textbf{Procedure:}
+\subsubsection{Part 2: The Simpsons Challenge (Similar Patterns)}
 \begin{itemize}
-    \item Store $P = 1, 2, \ldots, 30$ random patterns
-    \item For each $P$, measure retrieval accuracy with 10\% noise
-    \item Plot accuracy vs. $P$
-    \item Compare to theoretical limit ($\sim 0.138N$)
+    \item \textbf{Data}: Five simplified black-and-white Simpsons characters (Homer, Marge, Bart, Lisa, Maggie), each resized to $24\times24$ pixels ($N=576$).
+    \item \textbf{Motivation}: These faces share strong structure (round heads, similar silhouettes), so Hebbian learning produces highly correlated weight vectors and overlapping energy valleys.
+    \item \textbf{Hebbian vs. Pseudo-Inverse}: We train both a classical Hebbian Hopfield network and a \texttt{PseudoInverseHopfield} implementation from the notebook on the same set of characters.
+    \item \textbf{Evaluation}: For each character we add moderate noise and measure retrieval accuracy across multiple trials.
+    \item \textbf{Result}: On these highly correlated patterns, Hebbian learning fails completely (empirically $\approx 0\%$ accuracy), while the pseudo-inverse rule (and a simplified modern Hopfield variant) achieve near-perfect retrieval (reported as $\approx 100\%$ accuracy in the notebook summary table).
 \end{itemize}
 
-\textbf{Brain Analogy:}\\
-When too many memories are crammed into one energy landscape, valleys merge and the network creates "false memories" (spurious attractors).
-
-\subsubsection{Spurious Attractors}
-\textbf{Procedure:}
+\subsubsection{Capacity and Spurious Attractors}
 \begin{itemize}
-    \item Store patterns near/above capacity
-    \item Initialize with random states
-    \item Check if network converges to non-stored patterns
-    \item Visualize spurious attractors
+    \item \textbf{Capacity Curve}: For the $N=100$ letter/geometric patterns we store $P = 1, 2, \ldots, 30$ random patterns and measure retrieval accuracy at fixed noise level. Accuracy remains high up to around $P \approx 13$ and then drops sharply, consistent with the theoretical limit $P_{\max} \approx 0.138N$.
+    \item \textbf{Spurious Attractor Search}: Using a helper method \texttt{check\_spurious\_attractors} from the notebook, we initialize the network from many random states and record stable states that are not any of the stored patterns. Visual inspection shows these spurious attractors are mixtures of the original memories, matching the theory of "false memories" near capacity.
+    \item \textbf{Energy Trajectories}: For representative runs we plot the Hopfield energy $E(\mathbf{s}^{(t)})$ over asynchronous updates and observe strictly decreasing trajectories until convergence, empirically confirming the energy-minimization picture.
 \end{itemize}
-
-\textbf{Brain Analogy:}\\
-Like confabulation in human memory — the brain creates stable but incorrect memories by blending real experiences.
 
 \subsection{Modern Connection: Transformers}
 
-Briefly mention that modern Hopfield networks generalize the classical model and are mathematically equivalent to attention mechanisms in transformers \cite{modern_hopfield}. This connects our project to cutting-edge AI research.
+In the second notebook we outline how modern Hopfield networks with continuous states and exponential energy functions can be written in the same form as transformer attention \cite{modern_hopfield}. We do not run large-scale experiments here, but we provide small illustrative examples that reuse the same image patterns to show how attention-style updates perform associative retrieval.
 
 \section{Limitations}
 
@@ -258,7 +242,7 @@ Briefly mention that modern Hopfield networks generalize the classical model and
     
     \item \textbf{No Temporal Sequences:} Classical Hopfield networks store static patterns only. They cannot learn or reproduce temporal sequences like melodies, motor actions, or video frames. Extensions like asymmetric Hopfield networks exist but were beyond our scope.
     
-    \item \textbf{Scalability Issues:} The weight matrix grows as $O(N^2)$, making large networks memory-intensive. We tested up to $N=1000$ neurons but did not explore sparse connectivity or hierarchical architectures that might improve scaling.
+    \item \textbf{Scalability Issues:} The weight matrix grows as $O(N^2)$, making large networks memory-intensive. In our notebooks the largest network has $N = 576$ neurons (24×24 Simpsons faces), but the quadratic scaling would quickly become problematic for much larger $N$; we did not explore sparse connectivity or hierarchical architectures that might improve scaling.
     
     \item \textbf{Correlated Pattern Interference:} Highly similar patterns (e.g., letters ``O'' and ``Q'') interfere with each other, reducing effective capacity below the theoretical limit. While the pseudo-inverse rule helps, it requires $O(N^3)$ matrix inversion.
     
@@ -318,6 +302,11 @@ Hopfield, J. J. (1982). Neural networks and physical systems with emergent colle
 
 \bibitem{modern_hopfield}
 Ramsauer, H., Schäfl, B., Lehner, J., Seidl, P., Widrich, M., Adler, T., ... \& Hochreiter, S. (2020). Hopfield networks is all you need. \textit{arXiv preprint arXiv:2008.02217}.
+
+\bibitem{demircigil2017}
+Demircigil, M., Heusel, J., Löwe, M., Upgang, S., \& Vermet, F. (2017).
+\newblock On a model of associative memory with huge storage capacity.
+\newblock \textit{arXiv preprint arXiv:1702.01929}. \url{https://arxiv.org/abs/1702.01929}.
 
 \bibitem{youtube_protein}
 "A Brain-Inspired Algorithm For Memory" (YouTube): \url{https://www.youtube.com/watch?v=1WPJdAW-sFo}
